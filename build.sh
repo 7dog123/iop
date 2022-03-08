@@ -16,10 +16,6 @@ PS2DEV=$GITHUB_WORKSPACE
 TARGET_ALIAS="iop"
 TARGET="mipsel-ps2-irx"
 
-chmod 755 config.guess config.sub
-cp -rv $GITHUB_WORKSPACE/config.guess $GITHUB_WORKSPACE/binutils-gdb
-cp -rv $GITHUB_WORKSPACE/config.sub $GITHUB_WORKSPACE/binutils-gdb
-
 export NDK_HOME=$GITHUB_WORKSPACE/android-ndk-r11c
 export CROSS_SYSROOT=${NDK_HOME}/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/
 export CROSS_COMPILE=${CROSS_SYSROOT}/x86_64-linux-android-
@@ -32,7 +28,7 @@ export AS="${CC} --sysroot=${SYSROOT}"
 export LD="${CROSS_COMPILE}ld"
 export RANLIB="${CROSS_COMPILE}ranlib"
 export STRIP="${CROSS_COMPILE}strip"
-#export CFLAGS="-D__ANDROID_API__=21"
+export CFLAGS="-D__ANDROID_API__=21"
 PATH=$NDK_HOME/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin:$PATH
 
 PROC_NR=$(getconf _NPROCESSORS_ONLN)
@@ -45,6 +41,7 @@ rm -rf build-$TARGET && mkdir build-$TARGET && cd build-$TARGET || { exit 1; }
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host=x86_64-linux-android \
+  --build=x86_64-linux-gnu \
   --disable-separate-code \
   --disable-sim \
   --disable-nls \

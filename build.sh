@@ -1,8 +1,5 @@
 #!/bin/sh
 
- File  58 lines (47 sloc)  1.98 KB
-#!/bin/sh
-
 REPO_URL="https://github.com/ps2dev/binutils-gdb.git"
 REPO_FOLDER="binutils-gdb"
 BRANCH_NAME="iop-v2.35.2"

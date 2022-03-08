@@ -38,3 +38,11 @@ jobs:
         run: ./build.sh
       - name: look into directory
         run: ls
+      - name: Prepare iop folder
+        run: |
+         tar -zcvf iop-${{matrix.os[0]}}.tar.gz iop
+      - uses: actions/upload-artifact@v2
+        with:
+          name: iop
+          path: iop.tar.gz
+

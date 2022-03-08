@@ -40,7 +40,7 @@ jobs:
         run: ls
       - name: Prepare iop folder
         run: |
-         tar -zcvf iop-${{matrix.os[0]}}.tar.gz iop
+         tar -zcvf iop.tar.gz iop
       - uses: actions/upload-artifact@v2
         with:
           name: iop

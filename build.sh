@@ -44,7 +44,6 @@ echo "Compiling binutils."
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host=x86_64-linux-android \
-  --build=x86_64-linux-android \
   --disable-separate-code \
   --disable-sim \
   --disable-nls \
@@ -90,7 +89,6 @@ echo "Configure GCC"
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host=x86_64-linux-android \
-  --build=x86_64-linux-android \
   --enable-languages="c" \
   --with-float=soft \
   --with-headers=no \

@@ -77,6 +77,11 @@ else
   cd "$REPO_FOLDER" && git fetch origin && git reset --hard "origin/${BRANCH_NAME}" && git checkout "$BRANCH_NAME" || exit 1
 fi
 
+cd gcc
+echo "download gcc prerequisites"
+./contrib/download_prerequisites
+cd ..
+
 rm -rf build-$TARGET-stage1 && mkdir build-$TARGET-stage1 && cd build-$TARGET-stage1 || { exit 1; }
 
 echo "Configure GCC"

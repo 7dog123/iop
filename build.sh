@@ -30,9 +30,9 @@ export HOST=x86_64-linux-android
 export API=21
 # Configure and build.
 export AR=$TOOLCHAIN/bin/llvm-ar
-export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+export CC=$TOOLCHAIN/bin/$HOST$API-clang
 export AS=$CC
-export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+export CXX=$TOOLCHAIN/bin/$HOST$API-clang++
 export LD=$TOOLCHAIN/bin/ld
 export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
 export STRIP=$TOOLCHAIN/bin/llvm-strip

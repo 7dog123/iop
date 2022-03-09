@@ -18,20 +18,24 @@ PS2DEV=$GITHUB_WORKSPACE
 TARGET_ALIAS="iop"
 TARGET="mipsel-ps2-irx"
 
-export NDK_HOME=$GITHUB_WORKSPACE/android-ndk-r11c
-export CROSS_SYSROOT=${NDK_HOME}/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin/
-export CROSS_COMPILE=${CROSS_SYSROOT}/x86_64-linux-android-
-export PATH=${NDK_HOME}/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin:$PATH
-export SYSROOT=${NDK_HOME}/platforms/android-21/arch-x86_64
-export CC="${CROSS_COMPILE}gcc --sysroot=${SYSROOT}"
-export CXX="${CROSS_COMPILE}g++ --sysroot=${SYSROOT}"
-export AR="${CROSS_COMPILE}ar"
-export AS="${CC} --sysroot=${SYSROOT}"
-export LD="${CROSS_COMPILE}ld"
-export RANLIB="${CROSS_COMPILE}ranlib"
-export STRIP="${CROSS_COMPILE}strip"
-export CFLAGS="-D__ANDROID_API__=21"
-PATH=$NDK_HOME/toolchains/x86_64-4.9/prebuilt/linux-x86_64/bin:$PATH
+# Only choose one of these, depending on your build machine...
+#export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
+export TOOLCHAIN=$ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64
+# Only choose one of these, depending on your device...
+#export HOST=aarch64-linux-android
+#export HOST=armv7a-linux-androideabi
+#export HOST=i686-linux-android
+export HOST=x86_64-linux-android
+# Set this to your minSdkVersion.
+export API=21
+# Configure and build.
+export AR=$TOOLCHAIN/bin/llvm-ar
+export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+export AS=$CC
+export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+export LD=$TOOLCHAIN/bin/ld
+export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+export STRIP=$TOOLCHAIN/bin/llvm-strip
 
 PROC_NR=$(getconf _NPROCESSORS_ONLN)
 
@@ -43,7 +47,7 @@ echo "Compiling binutils."
   --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
-  --host=x86_64-linux-android \
+  --host=$HOST \
   --disable-separate-code \
   --disable-sim \
   --disable-nls \
@@ -88,7 +92,7 @@ echo "Configure GCC"
   --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
-  --host=x86_64-linux-android \
+  --host=$HOST \
   --enable-languages="c" \
   --with-float=soft \
   --with-headers=no \
@@ -116,7 +120,7 @@ echo "Configure GCC"
 echo "Cleaning old files."
 make --quiet -j $PROC_NR clean          || { exit 1; }
 echo "Build GCC."
-make --quiet -j $PROC_NR CFLAGS="$CFLAGS" all
+make --quiet -j $PROC_NR all
 echo "Installing GCC."
 make --quiet -j $PROC_NR install-strip  || { exit 1; }
 echo "Clean files."

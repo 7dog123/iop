@@ -26,15 +26,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: download dependencies
-        run: |
-         sudo apt-get update
-         sudo apt-get -y install unzip automake autoconf autotools-dev
-      - name: download and unzip android ndk
-        run: |
-         wget -q https://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip
-         unzip android-ndk-r11c-linux-x86_64.zip
-      - name: configure build dvp binutils
+      - name: configure build iop
         run: ./build.sh
       - name: look into directory
         run: ls

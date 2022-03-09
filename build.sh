@@ -47,11 +47,10 @@ echo "Compiling binutils."
   --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
-  --host=$HOST \
+  --host="$HOST" \
   --disable-separate-code \
   --disable-sim \
-  --disable-nls \
-  $TARG_XTRA_OPTS || { exit 1; }
+  --disable-nls || { exit 1; }
 
 ## Compile and install.
 echo "Cleaning old files."
@@ -92,7 +91,7 @@ echo "Configure GCC"
   --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
-  --host=$HOST \
+  --host="$HOST" \
   --enable-languages="c" \
   --with-float=soft \
   --with-headers=no \
@@ -113,8 +112,7 @@ echo "Configure GCC"
   --disable-threads \
   --disable-target-libiberty \
   --disable-target-zlib \
-  --disable-nls \
-  $TARG_XTRA_OPTS || { exit 1; }
+  --disable-nls || { exit 1; }
 
 ## Compile and install.
 echo "Cleaning old files."

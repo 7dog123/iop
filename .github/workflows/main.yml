@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: configure build iop
-        run: ./build.sh
+        run: adb shell build.sh
       - name: look into directory
         run: ls
       - name: Prepare iop folder

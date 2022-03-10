@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: configure build iop
-        run: . $ANDROID_HOME/emulator/emulator build.sh
+        run: ./build.sh
       - name: look into directory
         run: ls
       - name: Prepare iop folder

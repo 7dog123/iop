@@ -15,6 +15,7 @@ fi
 cd ..
 
 PS2DEV=$GITHUB_WORKSPACE
+PATH=$PATH:$PS2DEV/iop/bin
 TARGET_ALIAS="iop"
 TARGET="mipsel-ps2-irx"
 

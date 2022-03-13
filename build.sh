@@ -32,7 +32,7 @@ export API=21
 # Configure and build.
 export AR=$TOOLCHAIN/bin/llvm-ar
 export CC=$TOOLCHAIN/bin/$HOST$API-clang
-export AS=$TOOLCHAIN/bin/llvm-as
+export AS=$TOOLCHAIN/bin/$HOST-as
 export CXX=$TOOLCHAIN/bin/$HOST$API-clang++
 export LD=$TOOLCHAIN/bin/ld
 export RANLIB=$TOOLCHAIN/bin/llvm-ranlib

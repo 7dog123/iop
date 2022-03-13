@@ -48,6 +48,7 @@ echo "Compiling binutils."
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host="$HOST" \
+  --build="$HOST" \
   --disable-separate-code \
   --disable-sim \
   --disable-nls || { exit 1; }
@@ -91,6 +92,7 @@ echo "Configure GCC"
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host="$HOST" \
+  --build="$HOST" \
   --enable-languages="c" \
   --with-float=soft \
   --with-headers=no \
@@ -114,14 +116,14 @@ echo "Configure GCC"
   --disable-nls || { exit 1; }
 
 ## Compile and install.
-#echo "Cleaning old files."
-#make --quiet -j $PROC_NR clean          || { exit 1; }
-#echo "Build GCC."
-#make --quiet -j $PROC_NR all
-#echo "Installing GCC."
-#make --quiet -j $PROC_NR install-strip  || { exit 1; }
-#echo "Clean files."
-#make --quiet -j $PROC_NR clean          || { exit 1; }
+echo "Cleaning old files."
+make --quiet -j $PROC_NR clean          || { exit 1; }
+echo "Build GCC."
+make --quiet -j $PROC_NR all
+echo "Installing GCC."
+make --quiet -j $PROC_NR install-strip  || { exit 1; }
+echo "Clean files."
+make --quiet -j $PROC_NR clean          || { exit 1; }
 
 ## Exit the build directory.
 cd .. || { exit 1; }

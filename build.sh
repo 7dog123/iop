@@ -89,7 +89,6 @@ rm -rf build-$TARGET-stage1 && mkdir build-$TARGET-stage1 && cd build-$TARGET-st
 
 echo "Configure GCC"
 ../gcc/configure \
-  --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host="$HOST" \
@@ -116,14 +115,14 @@ echo "Configure GCC"
   --disable-nls || { exit 1; }
 
 ## Compile and install.
-echo "Cleaning old files."
-make --quiet -j $PROC_NR clean          || { exit 1; }
-echo "Build GCC."
-make --quiet -j $PROC_NR all
-echo "Installing GCC."
-make --quiet -j $PROC_NR install-strip  || { exit 1; }
-echo "Clean files."
-make --quiet -j $PROC_NR clean          || { exit 1; }
+#echo "Cleaning old files."
+#make --quiet -j $PROC_NR clean          || { exit 1; }
+#echo "Build GCC."
+#make --quiet -j $PROC_NR all
+#echo "Installing GCC."
+#make --quiet -j $PROC_NR install-strip  || { exit 1; }
+#echo "Clean files."
+#make --quiet -j $PROC_NR clean          || { exit 1; }
 
 ## Exit the build directory.
 cd .. || { exit 1; }

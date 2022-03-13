@@ -45,7 +45,6 @@ rm -rf build-$TARGET && mkdir build-$TARGET && cd build-$TARGET || { exit 1; }
 
 echo "Compiling binutils."
 ../binutils-gdb/configure \
-  --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host="$HOST" \

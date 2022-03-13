@@ -45,10 +45,10 @@ rm -rf build-$TARGET && mkdir build-$TARGET && cd build-$TARGET || { exit 1; }
 
 echo "Compiling binutils."
 ../binutils-gdb/configure \
+  --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host="$HOST" \
-  --build="$HOST" \
   --disable-separate-code \
   --disable-sim \
   --disable-nls || { exit 1; }
@@ -89,10 +89,10 @@ rm -rf build-$TARGET-stage1 && mkdir build-$TARGET-stage1 && cd build-$TARGET-st
 
 echo "Configure GCC"
 ../gcc/configure \
+  --quiet \
   --prefix="$PS2DEV/$TARGET_ALIAS" \
   --target="$TARGET" \
   --host="$HOST" \
-  --build="$HOST" \
   --enable-languages="c" \
   --with-float=soft \
   --with-headers=no \

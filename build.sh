@@ -119,7 +119,7 @@ echo "Configure GCC"
 echo "Cleaning old files."
 make --quiet -j $PROC_NR clean          || { exit 1; }
 echo "Build GCC."
-make --quiet -j $PROC_NR all
+make --quiet all
 echo "Installing GCC."
 make --quiet -j $PROC_NR install-strip  || { exit 1; }
 echo "Clean files."
